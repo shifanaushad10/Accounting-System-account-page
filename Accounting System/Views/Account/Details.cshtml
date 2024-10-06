@@ -1,0 +1,37 @@
+﻿@if (ViewBag.ErrorMessage != null)
+{
+    <h2>@ViewBag.ErrorMessage</h2>
+}
+else
+{
+    <h2>Account Details</h2>
+    <table class="table">
+        <tr>
+            <th>AccountID</th>
+            <td>@Model.Rows[0]["AccountID"]</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>@((DateTime)Model.Rows[0]["Date"]).ToString("yyyy-MM-dd")</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Rows[0]["Description"]</td>
+        </tr>
+        <tr>
+            <th>Credit</th>
+            <td>@Model.Rows[0]["Credit"]</td>
+        </tr>
+        <tr>
+            <th>Debit</th>
+            <td>@Model.Rows[0]["Debit"]</td>
+        </tr>
+        <tr>
+            <th>Balance</th>
+            <td>@Model.Rows[0]["Balance"]</td>
+        </tr>
+    </table>
+
+    <a href="@Url.Action("Edit", "Account", new { id = Model.Rows[0]["AccountID"] })" class="btn btn-primary">Edit</a>
+    <a href="@Url.Action("Delete", "Account", new { id = Model.Rows[0]["AccountID"] })" class="btn btn-danger">Delete</a>
+}

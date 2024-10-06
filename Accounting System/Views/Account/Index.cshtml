@@ -1,0 +1,35 @@
+﻿@model System.Data.DataTable
+
+<h2>Accounts List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>AccountID</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Credit</th>
+            <th>Debit</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["AccountID"]</td>
+                <td>@((DateTime)row["Date"]).ToString("yyyy-MM-dd")</td>
+                <td>@row["Description"]</td>
+                <td>@row["Credit"]</td>
+                <td>@row["Debit"]</td>
+                <td>@row["Balance"]</td>
+                <td>
+                    <a href="@Url.Action("Details", "Account", new { id = row["AccountID"] })">View Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Create New Account</a>
